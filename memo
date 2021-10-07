@@ -1,0 +1,67 @@
+nesting 
+
+자식을 선택하는데 html처럼 선택하는 것
+
+ex
+
+.box {
+    h2{
+
+    }
+    button {
+
+    }
+}
+
+&:hover {
+
+}
+
+mixin : css를 마치 함수 쓰듯이 만드는 기능
+
+@mixin 이름(매개변수) {
+    color : 매개변수;
+    font-size : 30px;
+    maargin-bottom : 30px;
+}
+
+사용하기 
+
+태그 {
+@include 이름(매개변수);
+}
+
+if : 조건에 맞는것으로 쓸 수 있음
+
+사용 방법 
+
+@if 조건문 {
+
+}@else{
+
+} 
+
+
+
+extends  : 같은 코드를 중복하고 싶지 않을 때 쓰는것
+
+만드는법 
+%이름 {
+    코드
+}
+%button {
+    border-radius : 7px;
+}
+
+
+
+사용법 
+@extend %button ;
+
+
+content : mixin에서 사용하는 기능
+
+사용법 
+
+mixin 부분에서 @content라고 적은다음
+그 mixin을 불러오고 안에 속성과 값을 적으면 그게 @content가 된다
