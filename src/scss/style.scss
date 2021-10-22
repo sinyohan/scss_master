@@ -1,163 +1,94 @@
 @import "_variables.scss";
 @import "_reset.scss";
-body {
-  height: 200vh;
-}
-.header {
-  background-color: #f0f0f0;
-  width: 33%;
-  box-sizing: border-box;
-  height: 100vh;
-  padding: 88px 150px 60px 72px;
-  position: fixed;
-  h1 {
-    font-size: 70px;
-    color: $main-color;
-    margin-bottom: 110px;
-    width: 375px;
-  }
-  h2 {
-    font-size: 23px;
-    color: $main-color;
-    margin-bottom: 35px;
-  }
-  p:nth-child(3) {
-    font-size: 18px;
-    color: $main-color;
-    margin-bottom: 35px;
-  }
-  nav {
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      li {
-        margin-right: 10px;
-        a {
-          padding: 5px 0;
-          display: block;
-          color: rgb(114, 104, 104);
-        }
-      }
-    }
-  }
-  p:nth-child(5) {
-    font-size: 10px;
-    margin-top: 30px;
-    color: rgba(114, 114, 114, 0.9);
-    font-weight: bold;
-  }
-}
+@import "_extend.scss";
 
-.main {
-  width: 100%;
-  padding-left: 33%;
-  box-sizing: border-box;
-  background-color: $main-color;
-  padding-top: 140px;
-  .main__fix-box {
-    div {
-      padding: 60px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      color: white;
-      width: 70%;
-      box-sizing: border-box;
-      position: fixed;
-      text-align: center;
-      top: 0;
-      background-color: $main-color;
-      opacity: 0.9;
-      a {
-        margin: 0 5px;
-        color: rgba(0, 0, 0, 0.6);
-      }
-    }
+.overall-container {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-template-rows: 100vh;
+  background-color: white;
+  & > div {
+    @extend %grid;
   }
-}
-
-.main__li {
-  padding: 115px 145px;
-}
-.main__container__first {
-  display: flex;
-  color: white;
-  align-items: flex-end;
-  justify-content: space-between;
-  div {
+  & > div > div {
+    border: 0.1px solid $main-color;
     display: flex;
-    align-items: center;
-    span {
-      margin-right: 10px;
-      padding: 3px;
-      border-radius: 5px;
-      font-size: 35px;
-      background-color: #da281b;
-    }
-    h1 {
-      font-size: 50px;
-      margin-right: 10px;
-    }
-  }
-}
-
-.video {
-  width: 845px;
-  height: 475px;
-  border: 1px solid black;
-  margin: 55px 0;
-  position: relative;
-  .rank {
-    position: absolute;
-    width: 50px;
-    right: -50px;
-    display: flex;
-    box-sizing: border-box;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 15px;
-    background-color: #da281b;
-    a {
-      color: white;
-    }
-
-    span {
-      margin: 10px 0;
-      color: white;
+    color: $main-color;
+    font-size: 30px;
+  }
+  .overall-container__first {
+    & > div:not(.no-cursor) {
+      cursor: pointer;
+      transition: all 0.1s ease-in;
+      @extend %hover;
     }
   }
-}
-.main__container__second {
-  .main__description {
-    width: 50%;
-    margin-left: auto;
-    color: white;
-    font-size: 17px;
-    .rating {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      margin-top: 25px;
-      span:nth-child(2) {
-        color: rgba(0, 0, 0, 0.6);
+  .overall-container__second {
+    & > div:nth-child(2) {
+      grid-row: 2/-2;
+    }
+    & > div:nth-child(3) {
+      justify-content: flex-start;
+      overflow: hidden;
+
+      & > p {
+        text-transform: uppercase;
+        user-select: none;
+        // border: 1px solid black;
+        white-space: nowrap;
+        width: 1391px;
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        @keyframes scrolling {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-1390px);
+          }
+        }
+        animation: scrolling 20s linear infinite;
       }
     }
   }
-}
-.main__container__third {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 60px;
-  color: rgba(0, 0, 0, 0.5);
-  span:nth-child(2) {
-    a {
-      padding-bottom: 12px;
-      border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-      color: rgba(0, 0, 0, 0.5);
-      text-decoration: none;
-    }
-    i {
-      margin: 0 5px;
+  .overall-container__third {
+    & > div:not(.overall-container__third__empty) {
+      cursor: pointer;
+      transition: all 0.1s ease-in;
+      @extend %hover;
     }
   }
+}
+// {} 안에는 바로밑에 자식이나 & 나 nth-child 이런걸로 속성을 줄 때만 쓴다
+//  클래스 이름을 콕 찝어서 쓸 때는 밖에다가 쓴다
+
+// 이거와 같이 클래스 이름을 콕 집어서 속성을 줄 때는 {} 밖에다가
+// 속성을 준다
+.overall-container__first__circle {
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $main-color;
+    border-radius: 100%;
+    width: 25px;
+    font-weight: bold;
+    height: 25px;
+    color: $main-color;
+    font-size: 16px;
+    user-select: none;
+  }
+  & > div:nth-child(2) {
+    & > span {
+      font-weight: normal;
+      font-size: 32px;
+      transform: translateY(-2px);
+    }
+  }
+}
+.overall-container__third__menu {
+  text-transform: uppercase;
 }
